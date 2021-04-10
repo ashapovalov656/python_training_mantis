@@ -13,8 +13,8 @@ testdata = [Project(name=random_string("Project", 10), desc=random_string("Desc"
 
 
 @pytest.mark.parametrize("test_project", testdata)
-def test_create_project(app, orm, test_project):
-    old_projects = orm.get_project_list()
+def test_create_project(app, db, test_project):
+    old_projects = db.get_project_list()
     project_names = [p.name for p in old_projects]
 
     while test_project.name in project_names:
@@ -22,6 +22,6 @@ def test_create_project(app, orm, test_project):
 
     app.project.create(test_project)
     old_projects.append(test_project)
-    new_projects = orm.get_project_list()
+    new_projects = db.get_project_list()
 
     assert sorted(old_projects, key=Project.id_or_max) == sorted(new_projects, key=Project.id_or_max)
