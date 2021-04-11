@@ -8,8 +8,6 @@ class SessionHelper:
     def login(self, username, password):
         wd = self.app.wd
         self.app.open_home_page()
-        if self.is_logged_in():
-            self.logout()
         wd.find_element_by_name("username").click()
         wd.find_element_by_name("username").clear()
         wd.find_element_by_name("username").send_keys(username)

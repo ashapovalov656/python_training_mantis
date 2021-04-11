@@ -8,6 +8,6 @@ def clear(s):
         replace("/", "")
 
 
-def create_project_if_empty(app, orm):
-    if len(orm.get_project_list()) == 0:
+def create_project_if_empty(app):
+    if len(app.soap.get_projects(app.config["webadmin"]["username"], app.config["webadmin"]["password"])) == 0:
         app.project.create(Project(name="123", desc="456"))
