@@ -22,7 +22,4 @@ class SoapHelper:
 
     def get_projects(self, username, pasword):
         client = Client("http://localhost/mantisbt-1.2.20/api/soap/mantisconnect.php?wsdl")
-        #pp = client.service.mc_projects_get_user_accessible(username, pasword)
-        #n = pp[0].id
-        #qwe = 2
         return self.convert_projects_to_model(client.service.mc_projects_get_user_accessible(username, pasword))
